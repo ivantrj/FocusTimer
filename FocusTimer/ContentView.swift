@@ -6,19 +6,69 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
+    @StateObject private var settings = PomodoroSettings()
+    @StateObject private var persistence = Persistence()
+    @StateObject private var timerVM = FocusTimerViewModel()
+
+    @State private var showSettings = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            NavigationStack {
+                TimerView()
+                    .navigationTitle("Timer")
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                showSettings = true
+                            } label: {
+                                Image(systemName: "gearshape")
+                            }
+                            .accessibilityLabel("Settings")
+                        }
+                    }
+            }
+            .tabItem {
+                Label("Timer", systemImage: "timer")
+            }
+
+            NavigationStack {
+                HistoryView()
+                    .navigationTitle("History")
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                showSettings = true
+                            } label: {
+                                Image(systemName: "gearshape")
+                            }
+                            .accessibilityLabel("Settings")
+                        }
+                    }
+            }
+            .tabItem {
+                Label("History", systemImage: "clock.arrow.circlepath")
+            }
         }
-        .padding()
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+                .presentationDetents([.medium, .large])
+        }
+        .environmentObject(settings)
+        .environmentObject(persistence)
+        .environmentObject(timerVM)
+        .onAppear {
+            timerVM.configure(settings: settings, persistence: persistence)
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(PomodoroSettings())
+        .environmentObject(Persistence())
+        .environmentObject(FocusTimerViewModel())
 }
