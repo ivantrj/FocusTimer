@@ -42,8 +42,7 @@ final class FocusTimerViewModel: ObservableObject {
             remaining = seconds
             progress = 0
         } else {
-            // Keep remaining as-is; adjust progress based on new total
-            progress = 1 - (remaining / totalForPhase)
+            progress = 1 - (remaining / max(totalForPhase, 0.001))
         }
     }
 
@@ -73,6 +72,7 @@ final class FocusTimerViewModel: ObservableObject {
             phaseStartDate = Date()
         }
         triggerHaptic(.start)
+        scheduleNotificationForCurrentPhase()
         beginTimerLoop()
     }
 
@@ -82,6 +82,7 @@ final class FocusTimerViewModel: ObservableObject {
         timerTask?.cancel()
         timerTask = nil
         triggerHaptic(.pause)
+        Task { await NotificationsManager.shared.cancelPhaseNotifications() }
     }
 
     func reset() {
@@ -97,12 +98,11 @@ final class FocusTimerViewModel: ObservableObject {
 
     private func beginTimerLoop() {
         timerTask?.cancel()
-        _ = Date()
         timerTask = Task { [weak self] in
             guard let self else { return }
             var lastTick = Date()
             while !Task.isCancelled {
-                try? await Task.sleep(nanoseconds: 50_000_000) // 50ms for smooth progress
+                try? await Task.sleep(nanoseconds: 50_000_000)
                 let now = Date()
                 let delta = now.timeIntervalSince(lastTick)
                 lastTick = now
@@ -118,10 +118,12 @@ final class FocusTimerViewModel: ObservableObject {
     }
 
     private func completePhase(skipped: Bool) {
-        guard let persistence, let settings else { return }
+        guard let persistence else { return }
         let end = Date()
         let start = phaseStartDate ?? Date().addingTimeInterval(-totalForPhase)
         phaseStartDate = nil
+
+        Task { await NotificationsManager.shared.cancelPhaseNotifications() }
 
         if !skipped {
             let session = FocusSession(
@@ -154,6 +156,19 @@ final class FocusTimerViewModel: ObservableObject {
         phaseStartDate = nil
         progress = 0
         applySettings()
+    }
+
+    // MARK: - Notifications
+
+    private func scheduleNotificationForCurrentPhase() {
+        let fireDate = Date().addingTimeInterval(remaining)
+        Task {
+            await NotificationsManager.shared.schedulePhaseCompletionNotification(
+                phase: phase,
+                taskTitle: currentTask?.title,
+                fireDate: fireDate
+            )
+        }
     }
 
     // MARK: - Haptics

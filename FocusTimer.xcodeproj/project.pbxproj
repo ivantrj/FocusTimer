@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2C01E86A2E7A9494006E54CF /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E8692E7A9494006E54CF /* NotificationsManager.swift */; };
+		2C01E86C2E7A9644006E54CF /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E86B2E7A9644006E54CF /* BreathingView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		2C01E84B2E7978FF006E54CF /* FocusTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C01E8692E7A9494006E54CF /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		2C01E86B2E7A9644006E54CF /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -34,6 +41,8 @@
 			children = (
 				2C01E84D2E7978FF006E54CF /* FocusTimer */,
 				2C01E84C2E7978FF006E54CF /* Products */,
+				2C01E8692E7A9494006E54CF /* NotificationsManager.swift */,
+				2C01E86B2E7A9644006E54CF /* BreathingView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C01E86A2E7A9494006E54CF /* NotificationsManager.swift in Sources */,
+				2C01E86C2E7A9644006E54CF /* BreathingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct ContentView: View {
     @StateObject private var settings = PomodoroSettings()
@@ -19,7 +18,7 @@ struct ContentView: View {
         TabView {
             NavigationStack {
                 TimerView()
-                    .navigationTitle("Timer")
+                    .navigationTitle("Focus")
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
                             Button {
@@ -32,7 +31,15 @@ struct ContentView: View {
                     }
             }
             .tabItem {
-                Label("Timer", systemImage: "timer")
+                Label("Focus", systemImage: "target")
+            }
+
+            NavigationStack {
+                BreathingView()
+                    .navigationTitle("Breathing")
+            }
+            .tabItem {
+                Label("Breathing", systemImage: "wind")
             }
 
             NavigationStack {
@@ -62,6 +69,7 @@ struct ContentView: View {
         .environmentObject(timerVM)
         .onAppear {
             timerVM.configure(settings: settings, persistence: persistence)
+            Task { await NotificationsManager.shared.requestAuthorizationIfNeeded() }
         }
     }
 }
