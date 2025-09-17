@@ -13,6 +13,8 @@ struct ContentView: View {
     @StateObject private var timerVM = FocusTimerViewModel()
 
     @State private var showSettings = false
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
+    @State private var presentOnboarding: Bool = false
 
     var body: some View {
         TabView {
@@ -64,12 +66,25 @@ struct ContentView: View {
             SettingsView()
                 .presentationDetents([.medium, .large])
         }
+        .sheet(isPresented: $presentOnboarding) {
+            OnboardingView {
+                hasCompletedOnboarding = true
+                presentOnboarding = false
+            }
+            .interactiveDismissDisabled(true)
+        }
         .environmentObject(settings)
         .environmentObject(persistence)
         .environmentObject(timerVM)
         .onAppear {
             timerVM.configure(settings: settings, persistence: persistence)
             Task { await NotificationsManager.shared.requestAuthorizationIfNeeded() }
+            if !hasCompletedOnboarding {
+                // Slight delay to avoid presenting too early on launch
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    presentOnboarding = true
+                }
+            }
         }
     }
 }

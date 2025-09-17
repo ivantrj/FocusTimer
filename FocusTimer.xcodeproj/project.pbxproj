@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		2C01E86A2E7A9494006E54CF /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E8692E7A9494006E54CF /* NotificationsManager.swift */; };
 		2C01E86C2E7A9644006E54CF /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E86B2E7A9644006E54CF /* BreathingView.swift */; };
+		2C01E86E2E7A96EC006E54CF /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E86D2E7A96EC006E54CF /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C01E84B2E7978FF006E54CF /* FocusTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C01E8692E7A9494006E54CF /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		2C01E86B2E7A9644006E54CF /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
+		2C01E86D2E7A96EC006E54CF /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,6 +45,7 @@
 				2C01E84C2E7978FF006E54CF /* Products */,
 				2C01E8692E7A9494006E54CF /* NotificationsManager.swift */,
 				2C01E86B2E7A9644006E54CF /* BreathingView.swift */,
+				2C01E86D2E7A96EC006E54CF /* OnboardingView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +133,7 @@
 			files = (
 				2C01E86A2E7A9494006E54CF /* NotificationsManager.swift in Sources */,
 				2C01E86C2E7A9644006E54CF /* BreathingView.swift in Sources */,
+				2C01E86E2E7A96EC006E54CF /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
