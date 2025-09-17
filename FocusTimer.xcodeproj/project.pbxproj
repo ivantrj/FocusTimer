@@ -10,6 +10,11 @@
 		2C01E86A2E7A9494006E54CF /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E8692E7A9494006E54CF /* NotificationsManager.swift */; };
 		2C01E86C2E7A9644006E54CF /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E86B2E7A9644006E54CF /* BreathingView.swift */; };
 		2C01E86E2E7A96EC006E54CF /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E86D2E7A96EC006E54CF /* OnboardingView.swift */; };
+		2C01E8702E7A9821006E54CF /* BreathingSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E86F2E7A9821006E54CF /* BreathingSettingsView.swift */; };
+		2C01E8722E7A9822006E54CF /* HistorySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E8712E7A9822006E54CF /* HistorySettingsView.swift */; };
+		2C01E8742E7A9974006E54CF /* BreathingTechnique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E8732E7A9974006E54CF /* BreathingTechnique.swift */; };
+		2C01E8762E7A997A006E54CF /* BreathingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E8752E7A997A006E54CF /* BreathingViewModel.swift */; };
+		2C01E8782E7A9DDF006E54CF /* BreathingSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01E8772E7A9DDF006E54CF /* BreathingSessionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +22,11 @@
 		2C01E8692E7A9494006E54CF /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		2C01E86B2E7A9644006E54CF /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		2C01E86D2E7A96EC006E54CF /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		2C01E86F2E7A9821006E54CF /* BreathingSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingSettingsView.swift; sourceTree = "<group>"; };
+		2C01E8712E7A9822006E54CF /* HistorySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySettingsView.swift; sourceTree = "<group>"; };
+		2C01E8732E7A9974006E54CF /* BreathingTechnique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingTechnique.swift; sourceTree = "<group>"; };
+		2C01E8752E7A997A006E54CF /* BreathingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingViewModel.swift; sourceTree = "<group>"; };
+		2C01E8772E7A9DDF006E54CF /* BreathingSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingSessionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -46,6 +56,11 @@
 				2C01E8692E7A9494006E54CF /* NotificationsManager.swift */,
 				2C01E86B2E7A9644006E54CF /* BreathingView.swift */,
 				2C01E86D2E7A96EC006E54CF /* OnboardingView.swift */,
+				2C01E86F2E7A9821006E54CF /* BreathingSettingsView.swift */,
+				2C01E8712E7A9822006E54CF /* HistorySettingsView.swift */,
+				2C01E8732E7A9974006E54CF /* BreathingTechnique.swift */,
+				2C01E8752E7A997A006E54CF /* BreathingViewModel.swift */,
+				2C01E8772E7A9DDF006E54CF /* BreathingSessionView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,8 +146,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C01E8782E7A9DDF006E54CF /* BreathingSessionView.swift in Sources */,
+				2C01E8762E7A997A006E54CF /* BreathingViewModel.swift in Sources */,
+				2C01E8702E7A9821006E54CF /* BreathingSettingsView.swift in Sources */,
 				2C01E86A2E7A9494006E54CF /* NotificationsManager.swift in Sources */,
 				2C01E86C2E7A9644006E54CF /* BreathingView.swift in Sources */,
+				2C01E8722E7A9822006E54CF /* HistorySettingsView.swift in Sources */,
+				2C01E8742E7A9974006E54CF /* BreathingTechnique.swift in Sources */,
 				2C01E86E2E7A96EC006E54CF /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

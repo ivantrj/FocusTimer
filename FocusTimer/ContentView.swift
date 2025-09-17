@@ -12,59 +12,88 @@ struct ContentView: View {
     @StateObject private var persistence = Persistence()
     @StateObject private var timerVM = FocusTimerViewModel()
 
-    @State private var showSettings = false
+    // Per-tab settings sheets
+    @State private var showFocusSettings = false
+    @State private var showBreathingSettings = false
+    @State private var showHistorySettings = false
+
+    // Onboarding
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     @State private var presentOnboarding: Bool = false
 
     var body: some View {
         TabView {
+            // Focus tab
             NavigationStack {
                 TimerView()
                     .navigationTitle("Focus")
+                    .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
                             Button {
-                                showSettings = true
+                                showFocusSettings = true
                             } label: {
                                 Image(systemName: "gearshape")
                             }
-                            .accessibilityLabel("Settings")
+                            .accessibilityLabel("Focus Settings")
                         }
                     }
             }
             .tabItem {
                 Label("Focus", systemImage: "target")
             }
+            .sheet(isPresented: $showFocusSettings) {
+                SettingsView()
+                    .presentationDetents([.medium, .large])
+            }
 
+            // Breathing tab
             NavigationStack {
                 BreathingView()
                     .navigationTitle("Breathing")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                showBreathingSettings = true
+                            } label: {
+                                Image(systemName: "gearshape")
+                            }
+                            .accessibilityLabel("Breathing Settings")
+                        }
+                    }
             }
             .tabItem {
                 Label("Breathing", systemImage: "wind")
             }
+            .sheet(isPresented: $showBreathingSettings) {
+                BreathingSettingsView()
+                    .presentationDetents([.medium, .large])
+            }
 
+            // History tab
             NavigationStack {
                 HistoryView()
                     .navigationTitle("History")
+                    .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
                             Button {
-                                showSettings = true
+                                showHistorySettings = true
                             } label: {
                                 Image(systemName: "gearshape")
                             }
-                            .accessibilityLabel("Settings")
+                            .accessibilityLabel("History Settings")
                         }
                     }
             }
             .tabItem {
                 Label("History", systemImage: "clock.arrow.circlepath")
             }
-        }
-        .sheet(isPresented: $showSettings) {
-            SettingsView()
-                .presentationDetents([.medium, .large])
+            .sheet(isPresented: $showHistorySettings) {
+                HistorySettingsView()
+                    .presentationDetents([.medium, .large])
+            }
         }
         .sheet(isPresented: $presentOnboarding) {
             OnboardingView {
@@ -80,7 +109,6 @@ struct ContentView: View {
             timerVM.configure(settings: settings, persistence: persistence)
             Task { await NotificationsManager.shared.requestAuthorizationIfNeeded() }
             if !hasCompletedOnboarding {
-                // Slight delay to avoid presenting too early on launch
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                     presentOnboarding = true
                 }
